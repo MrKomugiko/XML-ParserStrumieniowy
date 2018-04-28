@@ -27,14 +27,21 @@ namespace XML_ParserStrumieniowy
                             Console.WriteLine("Start elementu wiek.");
                                 // Wczytanie kolejnego elementu – skoro aktualny jest elementem początkowym to następny powinien być treścią elementu.  
                                 if (reader.Read())
-                                { 
-                                    Console.WriteLine("  Zawartosc: " + reader.Value.Trim());
+                                {
+                                    int wiek = Convert.ToInt32(reader.Value.Trim());
+                                    Console.WriteLine("  Zawartosc: " + wiek);
+
+                                    sumawieku += wiek;
+
+                                    Console.WriteLine("  Suma " + sumawieku);
                                 }
                                 break;
                         }
                     }
                 }
             }
+            Console.WriteLine("Suma lat wszstkich osob:{0}", sumawieku);
+            Console.Read();
         }
     }
 }
