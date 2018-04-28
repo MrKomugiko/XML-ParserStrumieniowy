@@ -11,8 +11,16 @@ namespace XML_ParserStrumieniowy
     {
         static void Main(string[] args)
         {
-            int sumawieku = 0;
-            int liczbaelementow;
+            string plec = "";
+            //--------------------------
+            int wiekK = 0;
+            float sumawiekuK = 0;
+            float liczK = 0;
+            //-------------------------
+            int wiekM = 0;
+            float sumawiekuM = 0;
+            float liczM = 0;
+            
             using (XmlReader reader = XmlReader.Create("test.xml"))
             {
                 while (reader.Read())//wczytanie kolejnego węzła   
@@ -21,26 +29,53 @@ namespace XML_ParserStrumieniowy
                     if (reader.IsStartElement())
                     {
                         // Sprawdzenie nazwy aktualnego węzła  
-                        switch (reader.Name)
+                        if (reader.Name == "plec")
                         {
-                            case "wiek":
-                            Console.WriteLine("Start elementu wiek.");
-                                // Wczytanie kolejnego elementu – skoro aktualny jest elementem początkowym to następny powinien być treścią elementu.  
-                                if (reader.Read())
+                            if (reader.Read()){
+                                plec = reader.Value.Trim();
+                                if (plec == "K")
                                 {
-                                    int wiek = Convert.ToInt32(reader.Value.Trim());
-                                    Console.WriteLine("  Zawartosc: " + wiek);
-
-                                    sumawieku += wiek;
-
-                                    Console.WriteLine("  Suma " + sumawieku);
+                                        liczK++;
+                                        Console.WriteLine("  Zawartosc: " + plec + " Kobieta nr.[" + liczK + "]");
                                 }
-                                break;
+                                else
+                                if (plec == "M")
+                                {
+                                        liczM++;
+                                        Console.WriteLine("  Zawartosc: " + plec + " Kobieta nr.[" + liczM + "]");
+                                }
+                            }
+                        }
+                        if (reader.Name == "wiek")
+                        {
+                            if (reader.Read()){
+                                if (plec == "K")
+                                {
+                                        wiekK = Convert.ToInt32(reader.Value.Trim());
+                                        Console.WriteLine("  WiekK: " + wiekK);
+                                        sumawiekuK += wiekK;
+                                }
+                                else
+                                if (plec == "M")
+                                {
+                                        wiekM = Convert.ToInt32(reader.Value.Trim());
+                                        Console.WriteLine("  WiekM: " + wiekM);
+                                        sumawiekuM += wiekM;
+                                }
+                            }
                         }
                     }
                 }
             }
-            Console.WriteLine("Suma lat wszstkich osob:{0}", sumawieku);
+            float sredniaK = sumawiekuK / liczK;
+            Console.WriteLine("Kobiet: {0}", liczK);
+            Console.WriteLine("Łączny wiek kobiet {0}", sumawiekuK);
+            Console.WriteLine("Średnia wieku kobiet {0}", sredniaK); 
+           
+            float sredniaM = sumawiekuM / liczM;
+            Console.WriteLine("Mezczyzn: {0}", liczM);
+            Console.WriteLine("Łączny wiek Mezczyzn {0}", sumawiekuM);
+            Console.WriteLine("Średnia wieku Mezczyzn {0}", sredniaM);
             Console.Read();
         }
     }
