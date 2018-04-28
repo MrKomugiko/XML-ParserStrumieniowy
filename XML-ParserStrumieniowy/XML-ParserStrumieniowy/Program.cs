@@ -21,7 +21,7 @@ namespace XML_ParserStrumieniowy
             float sumawiekuM = 0;
             float liczM = 0;
             
-            using (XmlReader reader = XmlReader.Create("test.xml"))
+            using (XmlReader reader = XmlReader.Create("..//..//Pliki XML/test.xml"))
             {
                 while (reader.Read())//wczytanie kolejnego węzła   
                 {
