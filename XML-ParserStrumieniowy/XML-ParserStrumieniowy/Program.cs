@@ -36,13 +36,11 @@ namespace XML_ParserStrumieniowy
                                 if (plec == "K")
                                 {
                                         liczK++;
-                                        Console.WriteLine("  Zawartosc: " + plec + " Kobieta nr.[" + liczK + "]");
                                 }
                                 else
                                 if (plec == "M")
                                 {
                                         liczM++;
-                                        Console.WriteLine("  Zawartosc: " + plec + " Kobieta nr.[" + liczM + "]");
                                 }
                             }
                         }
@@ -52,14 +50,12 @@ namespace XML_ParserStrumieniowy
                                 if (plec == "K")
                                 {
                                         wiekK = Convert.ToInt32(reader.Value.Trim());
-                                        Console.WriteLine("  WiekK: " + wiekK);
                                         sumawiekuK += wiekK;
                                 }
                                 else
                                 if (plec == "M")
                                 {
                                         wiekM = Convert.ToInt32(reader.Value.Trim());
-                                        Console.WriteLine("  WiekM: " + wiekM);
                                         sumawiekuM += wiekM;
                                 }
                             }
